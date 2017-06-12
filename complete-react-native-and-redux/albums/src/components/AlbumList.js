@@ -1,16 +1,29 @@
 // Import libs
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import AlbumsListItem from './AlbumListItem';
 
 // Make a component
 class AlbumsList extends Component {
+  state = {
+    items: []
+  }
+
   render() {
+    const { items } = this.state;
     const { textStyle, viewStyle } = styles;
     return (
       <View style={viewStyle}>
-        <Text style={textStyle}>List will be here</Text>
+        <Text style={textStyle}>List will be here:</Text>
+        {items.map((item) => AlbumsListItem(item))}
       </View>
     );
+  }
+
+  componentWillMount() {
+    fetch('https://rallycoding.herokuapp.com/api/music_albums')
+      .then((resp) => resp.json())
+      .then((items) => this.setState({ items }));
   }
 }
 
