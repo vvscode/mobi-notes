@@ -1,18 +1,21 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
 import Card from './Card';
+import CardSection from './CardSection';
 
-const AlbumsListItem = ({ title, artist, url, image, thumbnail_image }) => (<View>
-    <Card>
+const AlbumsListItem = ({ title, artist, url, image, thumbnail_image }) => (
+  <Card>
+    <CardSection>
       <Text>{title} by {artist}!</Text>
-    </Card>
-    <Card>
+    </CardSection>
+    <CardSection>
       <Image
       style={styles.imageStyles}
       source={{ uri: image }}
       />
-    </Card>
-  </View>);
+    </CardSection>
+  </Card>
+);
 
 const styles = {
   imageStyles: {
