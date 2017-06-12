@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 
 const AlbumsListItem = ({ title, artist, url, image, thumbnail_image }) => (
   <View>
-    <Text>{title} by {artist}</Text>
+    <Text>{title} by {artist}!</Text>
   </View>
 );
 

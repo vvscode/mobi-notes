@@ -15,7 +15,7 @@ class AlbumsList extends Component {
     return (
       <View style={viewStyle}>
         <Text style={textStyle}>List will be here:</Text>
-        {items.map((item) => AlbumsListItem(item))}
+        {items.map((item) => <AlbumsListItem {...item} key={item.title} />)}
       </View>
     );
   }
