@@ -11,10 +11,9 @@ class AlbumsList extends Component {
 
   render() {
     const { items } = this.state;
-    const { textStyle, viewStyle } = styles;
+    const { viewStyle } = styles;
     return (
       <View style={viewStyle}>
-        <Text style={textStyle}>List will be here:</Text>
         {items.map((item) => <AlbumsListItem {...item} key={item.title} />)}
       </View>
     );
@@ -28,24 +27,8 @@ class AlbumsList extends Component {
 }
 
 const styles = {
-  textStyle: {
-    fontSize: 32,
-    fontWeight: 'bold'
-  },
   viewStyle: {
-    backgroundColor: '#F8F8F8',
-    height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 15,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.2,
-    elevation: 2,
-    position: 'relative'
+
   }
 };
 
