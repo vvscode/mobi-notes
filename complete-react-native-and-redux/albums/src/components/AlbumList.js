@@ -1,16 +1,18 @@
 // Import libs
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
 // Make a component
-const AlbumsList = ({ text }) => {
-  const { textStyle, viewStyle } = styles;
-  return (
-    <View style={viewStyle}>
-      <Text style={textStyle}>List will be here</Text>
-    </View>
-  );
-};
+class AlbumsList extends Component {
+  render() {
+    const { textStyle, viewStyle } = styles;
+    return (
+      <View style={viewStyle}>
+        <Text style={textStyle}>List will be here</Text>
+      </View>
+    );
+  }
+}
 
 const styles = {
   textStyle: {
