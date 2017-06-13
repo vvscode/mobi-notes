@@ -9,7 +9,7 @@ const AlbumsListItem = ({ title, artist, url, image, thumbnail_image }) => (
       <View style={styles.imageWrapperStyles}>
         <Image
         style={styles.imageStyles}
-        source={{ uri: image }}
+        source={{ uri: thumbnail_image }}
         />
       </View>
       <View style={styles.textWrapperStyles}>
@@ -17,6 +17,14 @@ const AlbumsListItem = ({ title, artist, url, image, thumbnail_image }) => (
         <Text style={styles.artistStyles}>{artist}</Text>
       </View>
     </CardSection>
+    <CardSection>
+      <View>
+        <Image
+          style={styles.albumImageStyles}
+          source={{ uri: image }}
+        />
+        </View>
+      </CardSection>
   </Card>
 );
 
@@ -36,10 +44,16 @@ const styles = {
     marginLeft: 10
   },
   titleStyles: {
-
+    fontWeight: 'bold',
+    fontSize: 18
   },
   artistStyles: {
 
+  },
+  albumImageStyles: {
+    height: 300,
+    flex: 1,
+    width: 300 // null doesn't work??
   }
 };
 

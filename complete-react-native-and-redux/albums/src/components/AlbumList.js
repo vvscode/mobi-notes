@@ -1,6 +1,6 @@
 // Import libs
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import AlbumsListItem from './AlbumListItem';
 
 // Make a component
@@ -13,9 +13,9 @@ class AlbumsList extends Component {
     const { items } = this.state;
     const { viewStyle } = styles;
     return (
-      <View style={viewStyle}>
+      <ScrollView style={viewStyle}>
         {items.map((item) => <AlbumsListItem {...item} key={item.title} />)}
-      </View>
+      </ScrollView>
     );
   }
 
