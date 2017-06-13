@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Image } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
+import Button from './Button';
 
 const AlbumsListItem = ({ title, artist, url, image, thumbnail_image }) => (
   <Card>
@@ -24,6 +25,9 @@ const AlbumsListItem = ({ title, artist, url, image, thumbnail_image }) => (
           source={{ uri: image }}
         />
         </View>
+      </CardSection>
+      <CardSection>
+        <Button>Click</Button>
       </CardSection>
   </Card>
 );
