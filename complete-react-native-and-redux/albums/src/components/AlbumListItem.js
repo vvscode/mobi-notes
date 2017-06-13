@@ -27,7 +27,9 @@ const AlbumsListItem = ({ title, artist, url, image, thumbnail_image }) => (
         </View>
       </CardSection>
       <CardSection>
-        <Button>Click</Button>
+        <Button
+          onPress={() => console.log(`Pressed ${title} button`)}
+        >Click</Button>
       </CardSection>
   </Card>
 );
