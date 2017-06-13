@@ -5,22 +5,41 @@ import CardSection from './CardSection';
 
 const AlbumsListItem = ({ title, artist, url, image, thumbnail_image }) => (
   <Card>
-    <CardSection>
-      <Text>{title} by {artist}!</Text>
-    </CardSection>
-    <CardSection>
-      <Image
-      style={styles.imageStyles}
-      source={{ uri: image }}
-      />
+    <CardSection style={styles.cardSectionStyles}>
+      <View style={styles.imageWrapperStyles}>
+        <Image
+        style={styles.imageStyles}
+        source={{ uri: image }}
+        />
+      </View>
+      <View style={styles.textWrapperStyles}>
+        <Text style={styles.titleStyles}>{title}</Text>
+        <Text style={styles.artistStyles}>{artist}</Text>
+      </View>
     </CardSection>
   </Card>
 );
 
 const styles = {
+  cardSectionStyles: {
+    justifyContent: 'flex-start',
+    flexDirection: 'row'
+  },
+  imageWrapperStyles: {
+  },
   imageStyles: {
-    width: 150,
-    height: 150
+    width: 50,
+    height: 50
+  },
+  textWrapperStyles: {
+    justifyContent: 'space-around',
+    marginLeft: 10
+  },
+  titleStyles: {
+
+  },
+  artistStyles: {
+
   }
 };
 
