@@ -10,6 +10,8 @@ import {
   Dimensions
 } from 'react-native';
 
+let { width, height } = Dimensions.get("window");
+
 export default class EmployeeDetail extends Component {
   constructor(props) {
     super(props);
@@ -28,50 +30,85 @@ export default class EmployeeDetail extends Component {
   render() {
     let { id, name, email, username, phone, website } = this.props;
     return (
-      <View style={styles.container}>
+      <View>
         <Modal
+        
+          animationType={"slide"} 
           visible={this.state.isModalVisible}>
-          <View
-            style={{paddingTop: 50, backgroundColor: 'blue'}}
-            >
-            <Text>#{id}</Text>
-            <Text>{name}</Text>
-            <Text>{email}</Text>
-            <Text>{username}</Text>
-            <Text>{phone}</Text>
-            <Text>{website}</Text>
-            <Button
-              onPress={() => this.onClosePress(false)}
-              title="Close"
-              />
+          <View style={styles.modalColumn}>
+            <View style={styles.modal}>
+
+              <View style={styles.modalRow}>
+                <Text style={styles.rowText}>ID: </Text>
+                <Text style={styles.rowText}>{id} </Text>
+              </View>
+
+              <View style={styles.modalRow}>
+                <Text style={styles.rowText}>Name: </Text>
+                <Text style={styles.rowText}>{name} </Text>
+              </View>
+
+              <View style={styles.modalRow}>
+                <Text style={styles.rowText}>Email: </Text>
+                <Text style={styles.rowText}>{email}</Text>
+
+              </View>
+
+              <View style={styles.modalRow}>
+                <Text style={styles.rowText}>Phone: </Text>
+                <Text style={styles.rowText}>{phone} </Text>
+              </View>
+              <Button
+                style={styles.modalCloseButton}
+                color="blue"
+                onPress={() => this.onClosePress(false)}
+                title="Close"
+                />
+            </View>
           </View>
         </Modal>
         <TouchableHighlight
           onPress={() => this.onClosePress(!this.state.isModalVisible)}
           >
-          <Text>#{id} {name}</Text>
+          <Text style={styles.rowText}>#{id} {name}</Text>
         </TouchableHighlight>
       </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 10,
+
+  modal: {
+    backgroundColor: '#add8e6',
+    marginTop: height - 500,
+    paddingLeft: 50,
+    paddingRight: 50
+
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: '#F6F6F6',
+
+  },
+  rowText: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    fontSize: 10
+
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+
+  modalRow: {
+    flexDirection: 'row',
+
+    marginTop: 10,
+    borderBottomWidth: 1,
+    justifyContent: 'center'
+
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  modalCloseButton: {
+    marginTop: 10
   },
+
 });
