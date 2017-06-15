@@ -70,7 +70,10 @@ export default class EmployeeDetail extends Component {
         <TouchableHighlight
           onPress={() => this.onClosePress(!this.state.isModalVisible)}
           >
-          <Text style={styles.rowText}>#{id} {name}</Text>
+          <View style={styles.row}>
+            <Text style={styles.rowText}>#{id} {name}</Text>
+            <Text style={styles.rowText}>{email}</Text>
+          </View>
         </TouchableHighlight>
       </View>
     );
