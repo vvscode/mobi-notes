@@ -19,11 +19,38 @@ export default class EmployeeDetail extends Component {
     };
   }
 
+  onClosePress(visible) {
+    this.setState({
+      isModalVisible: visible
+    })
+  }
+
   render() {
-    let { id, name } = this.props;
+    let { id, name, email, username, phone, website } = this.props;
     return (
       <View style={styles.container}>
-        <Text>#{id} {name}</Text>
+        <Modal
+          visible={this.state.isModalVisible}>
+          <View
+            style={{paddingTop: 50, backgroundColor: 'blue'}}
+            >
+            <Text>#{id}</Text>
+            <Text>{name}</Text>
+            <Text>{email}</Text>
+            <Text>{username}</Text>
+            <Text>{phone}</Text>
+            <Text>{website}</Text>
+            <Button
+              onPress={() => this.onClosePress(false)}
+              title="Close"
+              />
+          </View>
+        </Modal>
+        <TouchableHighlight
+          onPress={() => this.onClosePress(!this.state.isModalVisible)}
+          >
+          <Text>#{id} {name}</Text>
+        </TouchableHighlight>
       </View>
     );
   }
