@@ -3,14 +3,27 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Modal, 
+  Button,
+  TouchableHighlight,
+  Dimensions
 } from 'react-native';
 
 export default class EmployeeDetail extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isModalVisible: false
+    };
+  }
+
   render() {
+    let { id, name } = this.props;
     return (
       <View style={styles.container}>
-
+        <Text>#{id} {name}</Text>
       </View>
     );
   }
@@ -18,6 +31,7 @@ export default class EmployeeDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 10,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

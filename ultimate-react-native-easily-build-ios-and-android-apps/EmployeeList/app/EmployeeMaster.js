@@ -6,6 +6,7 @@ import {
   View,
   ListView
 } from 'react-native';
+import EmployeeDetail from './EmployeeDetail';
 
 export default class EmployeeMaster extends Component {
   constructor(props) {
@@ -24,6 +25,10 @@ export default class EmployeeMaster extends Component {
     this.fetchUsers();
   }
 
+  renderRow(user) {
+    return (<EmployeeDetail {...user} />);
+  }
+
   fetchUsers() {
     return fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
@@ -40,8 +45,9 @@ export default class EmployeeMaster extends Component {
       <View style={styles.container}>
           <Text>Some text here</Text>
           <ListView
+            enableEmptySections={true}
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <Text>#${rowData.id} {rowData.name}</Text>}
+            renderRow={(rowData) => this.renderRow(rowData)}
             />
       </View>
     );
