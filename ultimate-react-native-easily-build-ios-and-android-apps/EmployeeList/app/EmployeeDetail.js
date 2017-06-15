@@ -34,5 +34,3 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-
-AppRegistry.registerComponent('EmployeeDetail', () => EmployeeDetail);
