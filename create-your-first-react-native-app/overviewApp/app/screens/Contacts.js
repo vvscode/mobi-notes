@@ -3,17 +3,23 @@ import {View, Text, FlatList} from 'react-native';
 
 import {contacts} from '../config/data';
 import colors from '../config/colors';
+import {ListItem} from '../components/ListItem/index';
 
 class Contacts extends Component {
+  handleRowPress(constact) {
+    return null
+  }
+
+  
   render() {
     return (
       <View style={styles.viewStyle}>
         <Text>Contacts Screen</Text>
-        <FlatList 
-          data={contacts} 
+        <FlatList
+          data={contacts}
           style={styles.flatListStyles}
-          renderItem={({item}) => <View><Text>{item.email}</Text></View>}
-          keyExtractor={({email}) => email} />
+          renderItem={({item}) => <ListItem contact={item} onPress={() => this.handleRowPress(item)}/>}
+          keyExtractor={({email}) => email}/>
       </View>
     )
   }
