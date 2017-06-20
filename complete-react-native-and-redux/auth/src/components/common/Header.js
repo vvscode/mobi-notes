@@ -41,4 +41,4 @@ const styles = {
 
 
 // Make the component availbale from other parts
-export default Header;
+export { Header };
