@@ -21,6 +21,7 @@ const styles = {
   textStyle: {
     fontSize: 32,
     fontWeight: 'bold',
+    color: '#000000'
   },
   viewStyle: {
     backgroundColor: '#F8F8F8',
