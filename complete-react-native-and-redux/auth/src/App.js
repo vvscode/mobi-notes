@@ -6,6 +6,12 @@ class App extends Component {
     return (
       <View>
         <Text>Hi there</Text>
+         <Text>Hi there</Text>
+         <Text>Hi there</Text>
+         <Text>Hi there</Text>
+         <Text>Hi there</Text>
+         <Text>Hi there</Text>
+         <Text>Hi there</Text>
         </View>
     );
   }
