@@ -1,18 +1,24 @@
 import React from 'react';
-import { TextInput, View, Text } from 'react-native';
+import {TextInput, View, Text} from 'react-native';
 
-const Input = ({label, value, onChangeText, keyboardType, placeholder, secureTextEntry}) => (
+const Input = ({
+  label,
+  value,
+  onChangeText,
+  keyboardType,
+  placeholder,
+  secureTextEntry
+}) => (
   <View style={styles.containerStyles}>
     <Text style={styles.labelStyles}>{label}</Text>
-    <TextInput 
+    <TextInput
       style={styles.inputStyles}
       value={value}
       autoCorrect={false}
       onChangeText={onChangeText}
       keyboardType={keyboardType}
       placeholder={placeholder}
-      secureTextEntry={secureTextEntry}
-    />
+      secureTextEntry={secureTextEntry}/>
   </View>
 );
 
@@ -40,4 +46,4 @@ const styles = {
   }
 }
 
-export { Input };
+export {Input};

@@ -1,21 +1,16 @@
 // Import libs
 import React from 'react';
-import {
-  Text,
-  View,
-} from 'react-native';
+import {Text, View} from 'react-native';
 
 // Make a component
-const Header = ({ text }) => {
-  const {
-    textStyle,
-    viewStyle
-  } = styles;
-  return (<View style={viewStyle}>
-    <Text style={textStyle}>{text}</Text>
-  </View>);
+const Header = ({text}) => {
+  const {textStyle, viewStyle} = styles;
+  return (
+    <View style={viewStyle}>
+      <Text style={textStyle}>{text}</Text>
+    </View>
+  );
 };
-
 
 const styles = {
   textStyle: {
@@ -40,6 +35,5 @@ const styles = {
   }
 };
 
-
 // Make the component availbale from other parts
-export { Header };
+export {Header};

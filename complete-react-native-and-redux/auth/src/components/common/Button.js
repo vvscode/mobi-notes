@@ -1,19 +1,16 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 
-const Button = ({ children, onPress = () => null }) => {
-  const {
-    touchableOpacityStyles,
-    textStyles
-  } = styles;
+const Button = ({
+  children,
+  onPress = () => null
+}) => {
+  const {touchableOpacityStyles, textStyles} = styles;
 
   return (
-  <TouchableOpacity 
-      onPress={onPress}
-      style={touchableOpacityStyles}
-  >
-    <Text style={textStyles}>{children}</Text>
-  </TouchableOpacity>
+    <TouchableOpacity onPress={onPress} style={touchableOpacityStyles}>
+      <Text style={textStyles}>{children}</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -38,4 +35,4 @@ const styles = {
   }
 };
 
-export { Button };
+export {Button};

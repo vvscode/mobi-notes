@@ -1,8 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 
-
-const Card = ({ children }) => (
+const Card = ({children}) => (
   <View style={styles.containerStyle}>
     {children}
   </View>
@@ -28,4 +27,4 @@ const styles = {
   }
 };
 
-export { Card };
+export {Card};
