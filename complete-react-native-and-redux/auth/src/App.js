@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Header } from './components/common'
+import firebase from 'firebase';
+
+import { Header } from './components/common';
 
 class App extends Component {
+  componentWillMount() {
+    firebase.initializeApp({
+      apiKey : "AIzaSyD7oW3mKg8plezXw3x84d91htiCweAsYYc",
+      authDomain : "react-native-auth-b744f.firebaseapp.com",
+      databaseURL : "https://react-native-auth-b744f.firebaseio.com",
+      projectId : "react-native-auth-b744f",
+      storageBucket : "react-native-auth-b744f.appspot.com",
+      messagingSenderId : "310523910803"
+    });
+  }
+
   render() {
     return (
       <View>
