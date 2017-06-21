@@ -24,6 +24,7 @@ class LoginForm extends Component {
   }
 
   onButtonPress() {
+    this.setState({ error: null });
     const {email, password} = this.state;
 
     firebase
