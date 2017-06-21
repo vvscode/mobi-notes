@@ -15,6 +15,7 @@ const Input = ({
       style={styles.inputStyles}
       value={value}
       autoCorrect={false}
+      autoCapitalize='none'
       onChangeText={onChangeText}
       keyboardType={keyboardType}
       placeholder={placeholder}
