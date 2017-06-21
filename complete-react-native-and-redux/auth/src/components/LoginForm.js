@@ -2,29 +2,28 @@ import React, {Component} from 'react';
 import {View, TextInput, Text} from 'react-native';
 import firebase from 'firebase';
 
-import {Button, Card, CardSection, Input} from './common';
+import {Button, Card, CardSection, Input, Spinner} from './common';
 
 class LoginForm extends Component {
   state = {
     email: '',
     password: '',
-    error: null
+    error: null,
+    loading: false
   }
 
   onAuthSuccess() {
-    this.setState({ error: null });
+    this.setState({error: null});
     console.log('onAuthSuccess');
   }
 
   onAuthError(err) {
     console.log('onAuthError', err);
-    this.setState({
-      error: 'Something went wrong'
-    })
+    this.setState({error: 'Something went wrong'})
   }
 
   onButtonPress() {
-    this.setState({ error: null });
+    this.setState({error: null, loading: true});
     const {email, password} = this.state;
 
     firebase
@@ -32,19 +31,22 @@ class LoginForm extends Component {
       .signInWithEmailAndPassword(email, password)
       .then(() => this.onAuthSuccess())
       .catch(() => firebase.auth().createUserWithEmailAndPassword(email, password))
-      .catch((err) => this.onAuthError(err));
+      .catch((err) => this.onAuthError(err))
+      .then(() => this.setState({loading: false}));
   }
 
   renderErrorMsg() {
-    return this.state.error ? (
-      <CardSection style={styles.errorWrapperStyles}>
-        <Text style={styles.errorStyles}>{this.state.error}</Text>
-      </CardSection>
-    ) : null;
+    return this.state.error
+      ? (
+        <CardSection style={styles.errorWrapperStyles}>
+          <Text style={styles.errorStyles}>{this.state.error}</Text>
+        </CardSection>
+      )
+      : null;
   }
 
   render() {
-    const {email, password, error} = this.state;
+    const {email, password, error, loading} = this.state;
     return (
       <Card>
         <CardSection>
@@ -71,6 +73,7 @@ class LoginForm extends Component {
             .onButtonPress
             .bind(this)}>Log in</Button>
         </CardSection>
+        {loading && <Spinner/>}
         {error && this.renderErrorMsg()}
 
       </Card>
@@ -85,8 +88,7 @@ const styles = {
     flex: 1,
     textAlign: 'center'
   },
-  errorWrapperStyles: {
-  }
+  errorWrapperStyles: {}
 };
 
 export default LoginForm;
