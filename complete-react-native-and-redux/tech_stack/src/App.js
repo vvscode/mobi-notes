@@ -4,11 +4,14 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
 import reducers from './reducers';
+import {Header} from './components/common/index'
 
 const App = () => {
   return (
     <Provider store={createStore(reducers)}>
-      <View/>
+      <View>
+        <Header text="Tech Stack"/>
+      </View>
     </Provider>
   );
 };
