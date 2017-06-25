@@ -1,30 +1,26 @@
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {ScrollView} from 'react-native';
 
-import {capitalizeFirstLetter} from '../helpers/string';
+import {Header, Actions, Info} from '../components/UserDetails';
+import colors from '../config/colors';
 
 class Details extends Component {
   render() {
-    const {navigation} = this.props;
-    const {contact} = navigation.state.params;
-    const {name} = contact;
-
-    const contactName = `${capitalizeFirstLetter(name.first)} ${capitalizeFirstLetter(name.last)}`
-
+    const { contact } = this.props.navigation.state.params;
     return (
-      <View style={styles.viewStyle}>
-        <Text>Details Screen for {contactName}</Text>
-      </View>
-    )
+      <ScrollView style={{
+        backgroundColor: colors.background
+      }}>
+        <Header {...contact}/>
+        <Actions {...contact}/>
+        <Info {...contact}/>
+      </ScrollView>
+    );
   }
 }
+
+Details.propTypes = {
+  navigation: PropTypes.object
+};
 
 export default Details;
-
-var styles = {
-  viewStyle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-}
