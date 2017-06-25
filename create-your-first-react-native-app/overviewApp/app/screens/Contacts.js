@@ -6,15 +6,15 @@ import colors from '../config/colors';
 import {ListItem} from '../components/ListItem/index';
 
 class Contacts extends Component {
-  handleRowPress(constact) {
+  handleRowPress(contact) {
+    const {navigate} = this.props.navigation;
+    navigate('Details', {contact});
     return null
   }
 
-  
   render() {
     return (
       <View style={styles.viewStyle}>
-        <Text>Contacts Screen</Text>
         <FlatList
           data={contacts}
           style={styles.flatListStyles}
