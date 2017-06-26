@@ -1,6 +1,7 @@
 import React from 'react';
-import Contacts from './screens/Contacts';
 
-const App = () => <Contacts />
+import ContactsStack from './config/router';
+
+const App = () => <ContactsStack/>
 
 export default App;

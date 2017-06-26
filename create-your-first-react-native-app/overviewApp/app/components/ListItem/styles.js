@@ -15,6 +15,7 @@ export default StyleSheet.create({
     height: 40,
     borderRadius: 20,
     marginRight: 10,
+
   },
   name: {
     fontSize: 16,

@@ -1,22 +1,26 @@
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import React, {Component, PropTypes} from 'react';
+import {ScrollView} from 'react-native';
+
+import {Header, Actions, Info} from '../components/UserDetails';
+import colors from '../config/colors';
 
 class Details extends Component {
   render() {
+    const { contact } = this.props.navigation.state.params;
     return (
-      <View style={styles.viewStyle}>
-        <Text>Details Screen</Text>
-      </View>
-    )
+      <ScrollView style={{
+        backgroundColor: colors.background
+      }}>
+        <Header {...contact}/>
+        <Actions {...contact}/>
+        <Info {...contact}/>
+      </ScrollView>
+    );
   }
 }
+
+Details.propTypes = {
+  navigation: PropTypes.object
+};
 
 export default Details;
-
-var styles = {
-  viewStyle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-}
