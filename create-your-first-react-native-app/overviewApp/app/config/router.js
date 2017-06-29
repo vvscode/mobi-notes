@@ -8,6 +8,7 @@ import Details from '../screens/Details';
 import Me from '../screens/Me';
 import NewContact from '../screens/NewContact';
 import {capitalizeFirstLetter} from '../helpers/string';
+import {DrawerButton} from '../components/Header';
 
 const contactsIconName = Platform.OS === 'ios'
   ? 'ios-list'
@@ -21,7 +22,7 @@ const meIconName = Platform.OS === 'ios'
 
 const LeftHeaderButtonCreator = Platform.OS === 'ios'
   ? (_ => null)
-  : ((navigation) => < Button title = "Open" onPress = {
+  : ((navigation) => <DrawerButton title = "Open" onPress = {
     () => navigation.navigate('DrawerOpen')
   } />);
 
