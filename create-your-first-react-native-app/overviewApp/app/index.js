@@ -1,9 +1,12 @@
 import React from 'react';
+import { Platform } from 'react-native';
 
-import {Drawer} from './config/router';
+import {Drawer, Tabs} from './config/router';
+
+const AppComponent = Platform.OS === 'ios' ? Tabs : Drawer;
 
 const App = () => {
-  return (<Drawer/>);
+  return (<AppComponent/>);
 }
 
 export default App;

@@ -19,15 +19,16 @@ const meIconName = Platform.OS === 'ios'
   ? 'ios-paw-outline'
   : 'md-paw';
 
+const LeftHeaderButtonCreator = Platform.OS === 'ios'
+  ? (_ => null)
+  : ((navigation) => < Button title = "Open" onPress = {
+    () => navigation.navigate('DrawerOpen')
+  } />);
+
 const ContactsStack = StackNavigator({
   Contacts: {
     screen: Contacts,
-    navigationOptions: ({navigation}) => ({
-      title: 'Contacts List',
-      headerLeft: < Button title = "Open" onPress = {
-        () => navigation.navigate('DrawerOpen')
-      } />
-    })
+    navigationOptions: ({navigation}) => ({title: 'Contacts List', headerLeft: LeftHeaderButtonCreator(navigation)})
   },
   Details: {
     screen: Details,
@@ -44,24 +45,14 @@ const ContactsStack = StackNavigator({
 const NewContactStack = StackNavigator({
   NewContact: {
     screen: NewContact,
-    navigationOptions: ({navigation}) => ({
-      headerTitle: 'New Contact',
-      headerLeft: < Button title = "Open" onPress = {
-        () => navigation.navigate('DrawerOpen')
-      } />
-    })
+    navigationOptions: ({navigation}) => ({headerTitle: 'New Contact', headerLeft: LeftHeaderButtonCreator(navigation)})
   }
 });
 
 const MeStack = StackNavigator({
   Me: {
     screen: Me,
-    navigationOptions: {
-      headerTitle: 'Me',
-      headerLeft: < Button title = "Open" onPress = {
-        () => navigation.navigate('DrawerOpen')
-      } />
-    }
+    navigationOptions: ({navigation}) => ({headerTitle: 'Me', headerLeft: LeftHeaderButtonCreator(navigation)})
   }
 });
 
