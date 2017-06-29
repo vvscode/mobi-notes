@@ -1,5 +1,5 @@
 import React from 'react';
-import {StackNavigator, TabNavigator} from 'react-navigation';
+import {StackNavigator, TabNavigator, DrawerNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Platform} from 'react-native';
 
@@ -76,6 +76,27 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'About Me',
       tabBarIcon: ({tintColor}) => (<Icon name={meIconName} color={tintColor} size={35}/>)
+    }
+  }
+});
+
+export const Drawer = DrawerNavigator({
+  Contacts: {
+    screen: ContactsStack,
+    navigationOptions: {
+      tabBarLabel: 'Contacts'
+    }
+  },
+  NewContact: {
+    screen: NewContactStack,
+    navigationOptions: {
+      tabBarLabel: 'New Contact'
+    }
+  },
+  Me: {
+    screen: MeStack,
+    navigationOptions: {
+      tabBarLabel: 'About Me'
     }
   }
 });
