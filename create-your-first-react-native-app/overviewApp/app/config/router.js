@@ -1,7 +1,7 @@
 import React from 'react';
 import {StackNavigator, TabNavigator, DrawerNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Platform} from 'react-native';
+import {Platform, Button} from 'react-native';
 
 import Contacts from '../screens/Contacts';
 import Details from '../screens/Details';
@@ -22,9 +22,12 @@ const meIconName = Platform.OS === 'ios'
 const ContactsStack = StackNavigator({
   Contacts: {
     screen: Contacts,
-    navigationOptions: {
-      title: 'Contacts List'
-    }
+    navigationOptions: ({navigation}) => ({
+      title: 'Contacts List',
+      headerLeft: < Button title = "Open" onPress = {
+        () => navigation.navigate('DrawerOpen')
+      } />
+    })
   },
   Details: {
     screen: Details,
@@ -41,9 +44,12 @@ const ContactsStack = StackNavigator({
 const NewContactStack = StackNavigator({
   NewContact: {
     screen: NewContact,
-    navigationOptions: {
-      headerTitle: 'New Contact'
-    }
+    navigationOptions: ({navigation}) => ({
+      headerTitle: 'New Contact',
+      headerLeft: < Button title = "Open" onPress = {
+        () => navigation.navigate('DrawerOpen')
+      } />
+    })
   }
 });
 
@@ -51,7 +57,10 @@ const MeStack = StackNavigator({
   Me: {
     screen: Me,
     navigationOptions: {
-      headerTitle: 'Me'
+      headerTitle: 'Me',
+      headerLeft: < Button title = "Open" onPress = {
+        () => navigation.navigate('DrawerOpen')
+      } />
     }
   }
 });
@@ -61,21 +70,45 @@ export const Tabs = TabNavigator({
     screen: ContactsStack,
     navigationOptions: {
       tabBarLabel: 'Contacts',
-      tabBarIcon: ({tintColor}) => (<Icon name={contactsIconName} color={tintColor} size={35}/>)
+      tabBarIcon: ({tintColor}) => (< Icon name = {
+        contactsIconName
+      }
+      color = {
+        tintColor
+      }
+      size = {
+        35
+      } />)
     }
   },
   NewContact: {
     screen: NewContactStack,
     navigationOptions: {
       tabBarLabel: 'New Contact',
-      tabBarIcon: ({tintColor}) => (<Icon name={newContactIconName} color={tintColor} size={35}/>)
+      tabBarIcon: ({tintColor}) => (< Icon name = {
+        newContactIconName
+      }
+      color = {
+        tintColor
+      }
+      size = {
+        35
+      } />)
     }
   },
   Me: {
     screen: MeStack,
     navigationOptions: {
       tabBarLabel: 'About Me',
-      tabBarIcon: ({tintColor}) => (<Icon name={meIconName} color={tintColor} size={35}/>)
+      tabBarIcon: ({tintColor}) => (< Icon name = {
+        meIconName
+      }
+      color = {
+        tintColor
+      }
+      size = {
+        35
+      } />)
     }
   }
 });
