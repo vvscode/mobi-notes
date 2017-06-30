@@ -1,7 +1,7 @@
-export default (state, action = {}) => {
+export default (state = null, action = {}) => {
   if (action.type === 'select_library') {
-    return action.payload;
+    return action.payload === state ? null : action.payload;
   }
 
-  return null;
+  return state;
 };

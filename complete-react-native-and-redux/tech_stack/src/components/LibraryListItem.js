@@ -14,18 +14,24 @@ class LibraryListItem extends Component {
       .selectLibrary(id);
   }
 
+  renderDescription() {
+    const { expanded, library } = this.props;
+    const {id, title, description } = library;
+    return !expanded ? null : (
+      <Text>{description}</Text>
+    );
+  }
+
   render() {
     const {id, title, description} = this.props.library;
-    const mark = this.props.expanded
-      ? '*'
-      : '';
     return (
       <TouchableWithoutFeedback onPress={this
         .onClick
         .bind(this)}>
         <View>
           <CardSection>
-            <Text style={styles.titleStyle}>{title}{mark}</Text>
+            <Text style={styles.titleStyle}>{title}</Text>
+            {this.renderDescription()}
           </CardSection>
         </View>
       </TouchableWithoutFeedback>
