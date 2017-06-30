@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableWithoutFeedback} from 'react-native';
+import {Text, View, TouchableWithoutFeedback, LayoutAnimation } from 'react-native';
 import {connect} from 'react-redux';
 
 import {CardSection} from './common';
 import * as actions from '../actions';
 
 class LibraryListItem extends Component {
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
+
   onClick() {
     const id = this.props.library.id;
 
@@ -15,11 +19,15 @@ class LibraryListItem extends Component {
   }
 
   renderDescription() {
-    const { expanded, library } = this.props;
-    const {id, title, description } = library;
-    return !expanded ? null : (
-      <Text>{description}</Text>
-    );
+    const {expanded, library} = this.props;
+    const {id, title, description} = library;
+    return !expanded
+      ? null
+      : (
+        <CardSection>
+          <Text style={styles.descriptionTextStyles}>{description}</Text>
+        </CardSection>
+      );
   }
 
   render() {
@@ -31,8 +39,8 @@ class LibraryListItem extends Component {
         <View>
           <CardSection>
             <Text style={styles.titleStyle}>{title}</Text>
-            {this.renderDescription()}
           </CardSection>
+          {this.renderDescription()}
         </View>
       </TouchableWithoutFeedback>
     );
@@ -43,6 +51,11 @@ const styles = {
   titleStyle: {
     fontSize: 18,
     paddingLeft: 15
+  },
+  descriptionTextStyles: {
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 10
   }
 }
 
