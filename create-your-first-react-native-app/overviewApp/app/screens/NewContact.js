@@ -47,8 +47,8 @@ class NewContact extends Component {
     this.setState(mode);
   }
 
-  handleSubmit = (index) => {
-    if (index === fields.length - 1) {
+  handleSubmit = (index, overwride = false) => {
+    if (index === fields.length - 1 || overwride) {
       alert('Submit');
     } else {
       const nextField = fields[index + 1];
@@ -69,7 +69,7 @@ class NewContact extends Component {
           ref={(input) => this[item.stateKey] = input}
           key={item.stateKey}/>))}
         <View>
-          <PrimaryButton label="Create" onPress={() => this.handleSubmit()}/>
+          <PrimaryButton label="Create" onPress={() => this.handleSubmit(0, true)}/>
         </View>
       </KeyboardAwareScrollView>
     )
