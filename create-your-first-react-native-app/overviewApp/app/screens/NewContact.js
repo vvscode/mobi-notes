@@ -47,16 +47,26 @@ class NewContact extends Component {
     this.setState(mode);
   }
 
-  handleSubmit = () => {
-    alert('Submit')
+  handleSubmit = (index) => {
+    if (index === fields.length - 1) {
+      alert('Submit');
+    } else {
+      const nextField = fields[index + 1];
+      this[nextField.stateKey].focus();
+    }
   }
 
   render() {
     return (
       <KeyboardAwareScrollView style={styles.viewStyle}>
-        {fields.map((item) => (<TextInput
+        {fields.map((item, index) => (<TextInput
           placeholder={item.placeholder}
           onChangeText={(text) => this.onInputChange(text, item.stateKey)}
+          returnKeyType={index === fields.length - 1
+          ? 'done'
+          : 'next'}
+          onSubmitEditing={() => this.handleSubmit(index)}
+          ref={(input) => this[item.stateKey] = input}
           key={item.stateKey}/>))}
         <View>
           <PrimaryButton label="Create" onPress={() => this.handleSubmit()}/>

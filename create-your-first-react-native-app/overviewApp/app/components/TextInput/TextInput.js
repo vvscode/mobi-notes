@@ -1,19 +1,27 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 import {View, TextInput} from 'react-native';
 import styles from './styles';
 
-const CustomTextInput = (props) => (
-  <View style={styles.container}>
-    <TextInput
-      autoCorrect={false}
-      autoCapitalize="none"
-      style={styles.input}
-      { ...props }/>
-  </View>
-);
+class CustomTextInput extends Component {
+  focus = () => {
+    this
+      ._input
+      .focus();
+  }
 
-CustomTextInput.propTypes = {
-  onPress: PropTypes.func
-};
+  render() {
+    const props = this.props;
+    return (
+      <View style={styles.container}>
+        <TextInput
+          autoCorrect={false}
+          autoCapitalize="none"
+          style={styles.input}
+          ref={(input) => this._input = input}
+          { ...props }/>
+      </View>
+    );
+  }
+}
 
 export default CustomTextInput;
