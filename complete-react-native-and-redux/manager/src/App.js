@@ -4,19 +4,18 @@ import {createStore} from 'redux';
 import {View, Text} from 'react-native';
 
 import reducers from './reducers';
-import { initFirebase } from './config/firebase';
+import {initFirebase} from './config/firebase';
+import {LoginForm} from './components/LoginForm';
 
 class App extends Component {
   componentWillMount() {
     initFirebase();
   }
-  
+
   render() {
     return (
       <Provider store={createStore(reducers)}>
-        <View>
-          <Text>Manager</Text>
-        </View>
+        <LoginForm/>
       </Provider>
     );
   }
