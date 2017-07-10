@@ -5,7 +5,7 @@ import {View, Text} from 'react-native';
 
 import reducers from './reducers';
 import {initFirebase} from './config/firebase';
-import {LoginForm} from './components/LoginForm';
+import LoginForm from './components/LoginForm';
 
 class App extends Component {
   componentWillMount() {
