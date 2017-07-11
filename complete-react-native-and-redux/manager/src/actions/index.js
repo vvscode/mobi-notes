@@ -1,9 +1,11 @@
-export const emailChanged = (text) => ({type: 'email_changed', payload: text});
+import * as types from './types';
 
-export const passwordChanged = (text) => ({type: 'password_changed', payload: text});
+export const emailChanged = (text) => ({type: types.EMAIL_CHANGED, payload: text});
+
+export const passwordChanged = (text) => ({type: types.PASSWORD_CHANGED, payload: text});
 
 export const loginFormSubmit = ({email, password}) => ({
-  type: 'loginForm_submit',
+  type: types.LOGIN_FORM_SUBMIT,
   payload: {
     email,
     password
