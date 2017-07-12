@@ -3,9 +3,11 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import {View, Text} from 'react-native';
 import ReduxThunk from 'redux-thunk';
+
 import reducers from './reducers';
 import {initFirebase} from './config/firebase';
 import LoginForm from './components/LoginForm';
+import Router from './Router';
 
 class App extends Component {
   componentWillMount() {
@@ -15,7 +17,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
-        <LoginForm/>
+        <Router />
       </Provider>
     );
   }
