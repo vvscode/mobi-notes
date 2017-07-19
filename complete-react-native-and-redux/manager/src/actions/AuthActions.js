@@ -1,3 +1,6 @@
+import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
+
 import * as types from './types';
 
 export const emailChanged = (text) => ({type: types.EMAIL_CHANGED, payload: text});
