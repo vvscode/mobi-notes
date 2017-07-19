@@ -18,3 +18,5 @@ export const loginFormSubmit = ({email, password}) => (dispatch) => {
     .then(() => Actions.main())
     .catch(({message}) => dispatch({type: types.LOGIN_USER_FAIL, payload: message}));
 };
+
+export * from './EmployeeActions';
