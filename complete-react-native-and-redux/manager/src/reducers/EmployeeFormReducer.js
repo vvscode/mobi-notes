@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   name: 'VVS Code',
   phone: '777 666 555 4',
   loading: false,
-  error: ''
+  error: '',
+  shift: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
