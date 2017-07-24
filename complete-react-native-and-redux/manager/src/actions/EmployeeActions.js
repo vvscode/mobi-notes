@@ -11,7 +11,6 @@ export const employeeUpdate = ({ prop, value }) => ({
 export const employeeCreate = ({ name, phone, shift }) => (dispatch) => {
   dispatch({ type: types.EMPLOYEE_CREATE_START });
   const { currentUser: { uid } } = firebase.auth();
-  debugger;
   firebase.database()
     .ref(`/users/${uid}/employees`)
     .push({name, phone, shift })
@@ -25,3 +24,13 @@ export const employeeCreate = ({ name, phone, shift }) => (dispatch) => {
       payload: err
     }));
 };
+
+export const employeeFetch = () => (dispatch) => {
+  dispatch({ type: types.EMPLOYEE_LIST_LOADING_START });
+  const { currentUser: { uid } } = firebase.auth();
+  const employeesRef = firebase.database().ref(`/users/${uid}/employees`);
+  employeesRef.on('value', (snapshot) => dispatch({
+    type: types.EMPLOYEE_LIST_LOADING_SUCCESS,
+    payload: snapshot.val()
+  }));
+}
