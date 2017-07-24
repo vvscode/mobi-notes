@@ -2,18 +2,34 @@ import React, {Component} from 'react';
 import {View, Text, Picker} from 'react-native';
 import {connect} from 'react-redux';
 
-import {employeeUpdate} from './../actions';
-import {Card, CardSection, Input, Button} from './common';
+import {employeeUpdate, employeeCreate} from './../actions';
+import {Card, CardSection, Input, Button, Spinner} from './common';
 
 export class EmployeeCreateForm extends Component {
   submit() {
-    alert(`${this.props.name} ${this.props.phone} will be created`);
+    const {name, phone, shift } = this.props;
+    this
+      .props
+      .employeeCreate({name, phone, shift: shift || 'Monday'});
   }
 
   onInputChange(prop) {
     return (value) => this
       .props
       .employeeUpdate({prop, value})
+  }
+
+  renderButton() {
+    if (this.props.loading) {
+      return (<Spinner/>);
+    }
+    return (
+      <Button onPress={this
+        .submit
+        .bind(this)}>
+        Create
+      </Button>
+    );
   }
 
   render() {
@@ -33,7 +49,9 @@ export class EmployeeCreateForm extends Component {
             value={this.props.phone}
             onChangeText={this.onInputChange('phone')}/>
         </CardSection>
-        <CardSection style={{flexDirection: 'column'}}>
+        <CardSection style={{
+          flexDirection: 'column'
+        }}>
           <Text style={styles.pickerTextStyles}>Shift</Text>
           <Picker
             selectedValue={this.props.shift}
@@ -48,11 +66,7 @@ export class EmployeeCreateForm extends Component {
           </Picker>
         </CardSection>
         <CardSection>
-          <Button onPress={this
-            .submit
-            .bind(this)}>
-            Create
-          </Button>
+          {this.renderButton()}
         </CardSection>
       </Card>
     )
@@ -74,4 +88,4 @@ export default connect(({
     loading,
     error
   }
-}) => ({name, phone, shift, loading, error}), {employeeUpdate})(EmployeeCreateForm);
+}) => ({name, phone, shift, loading, error}), {employeeUpdate, employeeCreate})(EmployeeCreateForm);

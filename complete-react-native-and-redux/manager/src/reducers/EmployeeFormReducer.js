@@ -15,5 +15,27 @@ export default (state = INITIAL_STATE, action) => {
      [action.payload.prop]: action.payload.value
    };
   }
+
+  if(action.type === types.EMPLOYEE_CREATE_START) {
+    return {
+      ...state,
+      loading: true
+    }
+  }
+
+  if(action.type === types.EMPLOYEE_CREATE_SUCCESS) {
+    return {
+      ...state,
+      loading: false
+    }
+  }
+
+  if(action.type === types.EMPLOYEE_CREATE_FAIL) {
+    return {
+      ...state,
+      ...INITIAL_STATE,
+      loading: false
+    }
+  }
   return state;
 }
