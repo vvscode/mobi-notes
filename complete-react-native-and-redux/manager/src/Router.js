@@ -22,8 +22,11 @@ const RouterComponent = () => (
       <Scene
         key="employeeCreateForm"
         component={EmployeeCreateForm}
-        title="Add Employee"
-        />
+        title="Add Employee"/>
+      <Scene
+        key="employeeEditForm"
+        component={EmployeeCreateForm}
+        title="Edit Employee"/>
     </Scene>
   </Router>
 )
