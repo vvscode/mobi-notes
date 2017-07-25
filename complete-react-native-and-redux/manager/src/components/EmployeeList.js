@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View, Text} from 'react-native';
+import _ from 'lodash';
+import {ListView } from 'react-native';
+
 
 import {employeeFetch} from './../actions';
-
+import ListViewItem from './EmployeeListItem';
 import {Card, CardSection, Spinner} from './common';
 
 export class EmployeeList extends Component {
@@ -11,38 +13,38 @@ export class EmployeeList extends Component {
     this
       .props
       .employeeFetch();
+    this.createDataSource(this.props);
   }
 
-  renderList() {
+  componentWillReceiveProps(nextProps) {
+    // this.props still old props
+    this.createDataSource(nextProps);
+  }
+
+  createDataSource(props) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+    this.dataSource = ds.cloneWithRows(props.employees);
+  }
+
+  renderRow(employee) {
+    return <ListViewItem employee={employee} />
+  }
+
+  render() {
     const {loading, employees} = this.props;
     if (loading) {
       return <CardSection><Spinner/></CardSection>
     }
-    return Object
-      .keys(employees)
-      .map((key) => employees[key])
-      .map((item) => (
-        <Card>
-          <CardSection>
-            <Text>{item.name}</Text>
-          </CardSection>
-          <CardSection>
-            <Text>{item.phone}</Text>
-          </CardSection>
-          <CardSection>
-            <Text>{item.shift}</Text>
-          </CardSection>
-        </Card>
-      ));
-  }
-
-  render() {
     return (
-      <View>
-        {this.renderList()}
-      </View>
+      <ListView
+        enableEmptySections
+        dataSource={this.dataSource}
+        renderRow={this.renderRow}
+      />
     );
-  }
+  };
 }
 
 export default connect(({
@@ -51,4 +53,11 @@ export default connect(({
     loading,
     error
   }
-}) => ({employees, loading, error}), {employeeFetch})(EmployeeList);
+}) => ({
+  employees: _.map(employees, (val, uid) => ({
+    ...val,
+    uid
+  })),
+  loading,
+  error
+}), {employeeFetch})(EmployeeList);
