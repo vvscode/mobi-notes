@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  if(action.type === types.EMPLOYEE_UPDATE) {
+  if(action.type === types.EMPLOYEE_FIELD_UPDATE) {
    return {
      ...state,
      [action.payload.prop]: action.payload.value

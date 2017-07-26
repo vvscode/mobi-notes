@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Picker} from 'react-native';
 import {connect} from 'react-redux';
 
-import {employeeUpdate, employeeCreate} from './../actions';
+import {employeeFieldUpdate , employeeCreate} from './../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
 
 export class EmployeeForm extends Component {
@@ -87,4 +87,4 @@ export default connect(({
     loading,
     error
   }
-}) => ({name, phone, shift, loading, error}), {employeeUpdate, employeeCreate})(EmployeeForm);
+}) => ({name, phone, shift, loading, error}), {employeeFieldUpdate, employeeCreate})(EmployeeForm);

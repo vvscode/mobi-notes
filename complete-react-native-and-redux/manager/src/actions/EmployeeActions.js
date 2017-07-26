@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 
 import * as types from './types';
 
-export const employeeUpdate = ({ prop, value }) => ({
+export const employeeFieldUpdate = ({ prop, value }) => ({
   type: types.EMPLOYEE_UPDATE,
   payload: { prop, value },
 });
