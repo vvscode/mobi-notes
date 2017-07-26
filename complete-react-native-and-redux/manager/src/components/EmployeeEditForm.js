@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import {View, Text, Picker} from 'react-native';
 import {connect} from 'react-redux';
+import _ from 'lodash';
 
-import {employeeFieldUpdate, employeeCreate} from './../actions';
+import {employeeFieldUpdate, employeeUpdate} from './../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
-import {EmployeeForm} from './EmployeeForm';
+import EmployeeForm from './EmployeeForm';
 
 export class EmployeeEditForm extends Component {
+  componentWillMount() {
+    _.each(this.props.employee, (value, prop) => this.props.employeeFieldUpdate({prop, value}));
+  }
+
   submit() {
     const {name, phone, shift} = this.props;
     this
@@ -64,4 +69,4 @@ export default connect(({
     loading,
     error
   }
-}) => ({name, phone, shift, loading, error}), {employeeUpdate})(EmployeeEditForm);
+}) => ({name, phone, shift, loading, error}), {employeeUpdate, employeeFieldUpdate})(EmployeeEditForm);

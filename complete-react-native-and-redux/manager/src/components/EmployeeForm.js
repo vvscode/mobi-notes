@@ -6,10 +6,6 @@ import {employeeFieldUpdate} from './../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
 
 export class EmployeeForm extends Component {
-  submit() {
-    alert('On submit');
-  }
-
   onInputChange(prop) {
     return (value) => this
       .props

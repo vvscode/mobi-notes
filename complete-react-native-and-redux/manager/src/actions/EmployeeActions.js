@@ -34,3 +34,8 @@ export const employeeFetch = () => (dispatch) => {
     payload: snapshot.val()
   }));
 }
+
+export const employeeUpdate = ({ uid, props }) => ({
+  type: types.EMPLOYEE_UPDATE,
+  payload: { uid, props },
+});
