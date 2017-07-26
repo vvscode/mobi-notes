@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Picker} from 'react-native';
 import {connect} from 'react-redux';
 
-import {employeeFieldUpdate , employeeCreate} from './../actions';
+import {employeeFieldUpdate} from './../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
 
 export class EmployeeForm extends Component {
@@ -13,7 +13,7 @@ export class EmployeeForm extends Component {
   onInputChange(prop) {
     return (value) => this
       .props
-      .employeeUpdate({prop, value})
+      .employeeFieldUpdate({prop, value})
   }
 
   renderButton() {
@@ -66,7 +66,6 @@ export class EmployeeForm extends Component {
             <Picker.Item label="Sunday" value="Sunday"/>
           </Picker>
         </CardSection>
-        {this.renderButton()}
       </Card>
     )
   }
@@ -87,4 +86,4 @@ export default connect(({
     loading,
     error
   }
-}) => ({name, phone, shift, loading, error}), {employeeFieldUpdate, employeeCreate})(EmployeeForm);
+}) => ({name, phone, shift, loading, error}), {employeeFieldUpdate})(EmployeeForm);

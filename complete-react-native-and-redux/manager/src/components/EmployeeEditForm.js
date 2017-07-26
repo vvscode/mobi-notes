@@ -6,7 +6,7 @@ import {employeeFieldUpdate, employeeCreate} from './../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
 import {EmployeeForm} from './EmployeeForm';
 
-export class EmployeeEditForm extends EmployeeForm {
+export class EmployeeEditForm extends Component {
   submit() {
     const {name, phone, shift} = this.props;
     this
@@ -45,6 +45,15 @@ export class EmployeeEditForm extends EmployeeForm {
       </View>
     );
   }
+
+  render() {
+    return (
+      <View>
+        <EmployeeForm/> 
+        {this.renderButton()}
+      </View>
+    )
+  }
 }
 
 export default connect(({
@@ -55,4 +64,4 @@ export default connect(({
     loading,
     error
   }
-}) => ({name, phone, shift, loading, error}), {employeeFieldUpdate, employeeCreate})(EmployeeEditForm);
+}) => ({name, phone, shift, loading, error}), {employeeUpdate})(EmployeeEditForm);

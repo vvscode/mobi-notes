@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {View, Text, Picker} from 'react-native';
 import {connect} from 'react-redux';
 
-import {employeeUpdate, employeeCreate} from './../actions';
+import {employeeCreate} from './../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
-import { EmployeeForm } from './EmployeeForm';
+import EmployeeForm from './EmployeeForm';
 
-export class EmployeeCreateForm extends EmployeeForm {
+export class EmployeeCreateForm extends Component {
   submit() {
     const {name, phone, shift } = this.props;
     this
@@ -26,6 +26,15 @@ export class EmployeeCreateForm extends EmployeeForm {
       </Button>
     );
   }
+
+  render() {
+    return (
+      <View>
+        <EmployeeForm />
+        {this.renderButton()}
+      </View>
+    )
+  }
 }
 
 export default connect(({
@@ -36,4 +45,4 @@ export default connect(({
     loading,
     error
   }
-}) => ({name, phone, shift, loading, error}), {employeeUpdate, employeeCreate})(EmployeeCreateForm);
+}) => ({name, phone, shift, loading, error}), {employeeCreate})(EmployeeCreateForm);
