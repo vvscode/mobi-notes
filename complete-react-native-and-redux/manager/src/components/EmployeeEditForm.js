@@ -3,7 +3,7 @@ import {View, Text, Picker} from 'react-native';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 
-import {employeeFieldUpdate, employeeUpdate} from './../actions';
+import {employeeUpdate, employeeFieldUpdate, employeeDelete} from './../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
 import EmployeeForm from './EmployeeForm';
 
@@ -16,14 +16,17 @@ export class EmployeeEditForm extends Component {
     const {name, phone, shift} = this.props;
     this
       .props
-      .employeeCreate({
+      .employeeUpdate({
         name,
         phone,
-        shift: shift || 'Monday'
+        shift: shift || 'Monday',
+        uid: this.props.employee.uid,
       });
   }
 
-  onDeletePress() {}
+  onDeletePress() {
+    this.props.employeeDelete(this.props.employee.uid);
+  }
 
   renderButton() {
     if (this.props.loading) {
@@ -69,4 +72,4 @@ export default connect(({
     loading,
     error
   }
-}) => ({name, phone, shift, loading, error}), {employeeUpdate, employeeFieldUpdate})(EmployeeEditForm);
+}) => ({name, phone, shift, loading, error}), {employeeUpdate, employeeFieldUpdate, employeeDelete})(EmployeeEditForm);

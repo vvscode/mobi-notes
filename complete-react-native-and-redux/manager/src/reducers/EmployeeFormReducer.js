@@ -1,8 +1,8 @@
 import * as types from '../actions/types';
 
 const INITIAL_STATE = {
-  name: 'VVS Code',
-  phone: '777 666 555 4',
+  name: '',
+  phone: '',
   loading: false,
   error: '',
   shift: ''
@@ -33,9 +33,25 @@ export default (state = INITIAL_STATE, action) => {
   if(action.type === types.EMPLOYEE_CREATE_FAIL) {
     return {
       ...state,
+      loading: false
+    }
+  }
+
+  if(action.type === types.EMPLOYEE_FIELD_UPDATE_SUCCESS) {
+    return {
+      ...state,
       ...INITIAL_STATE,
       loading: false
     }
   }
+
+  if(action.type === types.EMPLOYEE_FIELD_DELETE_SUCCESS) {
+    return {
+      ...state,
+      ...INITIAL_STATE,
+      loading: false
+    }
+  }
+
   return state;
 }

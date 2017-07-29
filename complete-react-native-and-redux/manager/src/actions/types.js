@@ -5,7 +5,8 @@ export const LOGIN_USER_START = 'login_user_start';
 export const LOGIN_USER_SUCCESS = 'login_user_success';
 export const LOGIN_USER_FAIL = 'login_user_fail';
 
-export const EMPLOYEE_UPDATE = 'employee_update';
+export const EMPLOYEE_FIELD_UPDATE_SUCCESS = 'employee_update_success';
+export const EMPLOYEE_FIELD_DELETE_SUCCESS = 'employee_delete_success';
 export const EMPLOYEE_FIELD_UPDATE = 'employee_field_update';
 export const EMPLOYEE_CREATE_START = 'employee_create_start';
 export const EMPLOYEE_CREATE_SUCCESS = 'employee_create_success';
