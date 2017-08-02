@@ -32,12 +32,12 @@ class Home extends Component {
           onChangeText={basePriceAmount => this.setState({ basePriceAmount })}
           buttonText={TEMP_BASE_CURRENCY}
           onPress={this.handlePressBaseCurrency}
-          value={this.state.basePriceAmount}
+          defaultValue={this.state.basePriceAmount}
         />
         <InputWithButton
           buttonText={TEMP_QUOTE_CURRENCY}
           onPress={this.handlePressQuoteCurrency}
-          value={`${TEMP_QUOTE_PRICE}`}
+          defaultValue={`${TEMP_QUOTE_PRICE}`}
           editable={false}
         />
       </Container>
