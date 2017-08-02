@@ -4,6 +4,7 @@ import { Text, StatusBar } from 'react-native';
 import { Container } from '../components/Containter';
 import { Logo } from '../components/Logo';
 import { InputWithButton } from '../components/TextInput';
+import { ClearButton } from '../components/Buttons';
 
 const TEMP_BASE_CURRENCY = 'USD';
 const TEMP_QUOTE_CURRENCY = 'GBP';
@@ -23,6 +24,10 @@ class Home extends Component {
     alert('How');
   }
 
+  handleFlipCurrencies() {
+    alert('Flip');
+  }
+
   render() {
     return (
       <Container>
@@ -39,6 +44,10 @@ class Home extends Component {
           onPress={this.handlePressQuoteCurrency}
           defaultValue={`${TEMP_QUOTE_PRICE}`}
           editable={false}
+        />
+        <ClearButton
+          text="Flip currencies"
+          onPress={this.handleFlipCurrencies}
         />
       </Container>
     );
