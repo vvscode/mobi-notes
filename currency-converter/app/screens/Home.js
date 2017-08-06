@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StatusBar } from 'react-native';
+import { StatusBar, KeyboardAvoidingView } from 'react-native';
 
 import { Container } from '../components/Containter';
 import { Logo } from '../components/Logo';
@@ -41,30 +41,28 @@ class Home extends Component {
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
         <Header onPress={this.handleOptionsPressgit} />
-        <Logo />
-        <InputWithButton
-          onChangeText={basePriceAmount => this.setState({ basePriceAmount })}
-          buttonText={TEMP_BASE_CURRENCY}
-          onPress={this.handlePressBaseCurrency}
-          defaultValue={this.state.basePriceAmount}
-        />
-        <InputWithButton
-          buttonText={TEMP_QUOTE_CURRENCY}
-          onPress={this.handlePressQuoteCurrency}
-          defaultValue={`${TEMP_QUOTE_PRICE}`}
-          editable={false}
-        />
-        <LastConverted
-          base={TEMP_BASE_CURRENCY}
-          quote={TEMP_QUOTE_CURRENCY}
-          convertionRate={TEMP_CONVERTIONS_RATE}
-          date={TEMP_CONVERTION_DATE}
-        />
-        <ClearButton
-          text="Flip currencies"
-          onPress={this.handleFlipCurrencies}
-        />
-
+        <KeyboardAvoidingView behavior="padding">
+          <Logo />
+          <InputWithButton
+            onChangeText={basePriceAmount => this.setState({ basePriceAmount })}
+            buttonText={TEMP_BASE_CURRENCY}
+            onPress={this.handlePressBaseCurrency}
+            defaultValue={this.state.basePriceAmount}
+          />
+          <InputWithButton
+            buttonText={TEMP_QUOTE_CURRENCY}
+            onPress={this.handlePressQuoteCurrency}
+            defaultValue={`${TEMP_QUOTE_PRICE}`}
+            editable={false}
+          />
+          <LastConverted
+            base={TEMP_BASE_CURRENCY}
+            quote={TEMP_QUOTE_CURRENCY}
+            convertionRate={TEMP_CONVERTIONS_RATE}
+            date={TEMP_CONVERTION_DATE}
+          />
+          <ClearButton text="Flip currencies" onPress={this.handleFlipCurrencies} />
+        </KeyboardAvoidingView>
       </Container>
     );
   }
