@@ -21,7 +21,7 @@ export class EmployeeEditForm extends Component {
         name,
         phone,
         shift: shift || 'Monday',
-        uid: this.props.employee.uid
+        uid: this.props.employee.uid,
       });
   }
 
@@ -30,12 +30,9 @@ export class EmployeeEditForm extends Component {
   }
 
   onTextPress() {
-    const {phone, shift} = this.props;
-    Communications.text(phone, `Your upcoming shift is on ${shift}`);
-  }
+    const { phone, shift } = this.props;
 
-  onFirePress() {
-    
+    Communications.text(phone, `Your upcoming shift is on ${shift}`);
   }
 
   renderButton() {
@@ -55,13 +52,6 @@ export class EmployeeEditForm extends Component {
         </CardSection>
         <CardSection>
           <Button onPress={this
-            .onTextPress
-            .bind(this)}>
-            Text
-          </Button>
-        </CardSection>
-        <CardSection>
-          <Button onPress={this
             .onDeletePress
             .bind(this)}>
             Delete
@@ -69,9 +59,9 @@ export class EmployeeEditForm extends Component {
         </CardSection>
         <CardSection>
           <Button onPress={this
-            .onFirePress
+            .onTextPress
             .bind(this)}>
-            Fire
+            Text
           </Button>
         </CardSection>
       </View>
@@ -81,7 +71,8 @@ export class EmployeeEditForm extends Component {
   render() {
     return (
       <View>
-        <EmployeeForm/> {this.renderButton()}
+        <EmployeeForm/> 
+        {this.renderButton()}
       </View>
     )
   }
