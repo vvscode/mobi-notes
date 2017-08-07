@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Picker} from 'react-native';
 import {connect} from 'react-redux';
 import _ from 'lodash';
+import Communications from 'react-native-communications';
 
 import {employeeUpdate, employeeFieldUpdate, employeeDelete} from './../actions';
 import {Card, CardSection, Input, Button, Spinner} from './common';
@@ -28,6 +29,12 @@ export class EmployeeEditForm extends Component {
     this.props.employeeDelete(this.props.employee.uid);
   }
 
+  onTextPress() {
+    const { phone, shift } = this.props;
+
+    Communications.text(phone, `Your upcoming shift is on ${shift}`);
+  }
+
   renderButton() {
     if (this.props.loading) {
       return (
@@ -48,6 +55,13 @@ export class EmployeeEditForm extends Component {
             .onDeletePress
             .bind(this)}>
             Delete
+          </Button>
+        </CardSection>
+        <CardSection>
+          <Button onPress={this
+            .onTextPress
+            .bind(this)}>
+            Text
           </Button>
         </CardSection>
       </View>
