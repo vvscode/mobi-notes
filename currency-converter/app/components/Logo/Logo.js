@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { View, Image, Text, Keyboard, Animated } from 'react-native';
+import { View, Text, Keyboard, Animated, Platform } from 'react-native';
 
 import styles from './styles';
 
 const ANIMATION_DURATION = 250;
+const keybordShowEvent = Platform.OS === 'android' ? 'keyboardDidShow' : 'keyboardWillShow';
+const keybordHideEvent = Platform.OS === 'android' ? 'keyboardDidHide' : 'keyboardWillHide';
 
 class Logo extends Component {
   constructor(...args) {
@@ -14,13 +16,13 @@ class Logo extends Component {
   }
 
   componentDidMount() {
-    this.keyboardShowListener = Keyboard.addListener('keyboardWillShow', this.onKeyboardShow);
-    this.keyboardHideListener = Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
+    this.keyboardShowListener = Keyboard.addListener(keybordShowEvent, this.onKeyboardShow);
+    this.keyboardHideListener = Keyboard.addListener(keybordHideEvent, this.onKeyboardHide);
   }
 
   componentWillUnmount() {
-    Keyboard.removeListener('keyboardWillShow', this.onKeyboardShow);
-    Keyboard.removeListener('keyboardWillHide', this.onKeyboardHide);
+    this.keyboardShowListener.remove();
+    this.keyboardHideListener.remove();
   }
 
   onKeyboardShow = () => {
