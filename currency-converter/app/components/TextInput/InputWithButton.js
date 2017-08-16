@@ -7,7 +7,6 @@ import styles from './styles';
 
 const underlayColor = color(styles.$buttonBackgroundColorBase).darken(styles.$buttonBackgroundColorModifier);
 
-
 const InputWithButton = (props) => {
   const {
     editable = true,
