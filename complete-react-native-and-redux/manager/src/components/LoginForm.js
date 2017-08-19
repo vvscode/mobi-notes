@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Text} from 'react-native';
 
 import {emailChanged, passwordChanged, loginFormSubmit} from './../actions';
-import {Card, CardSection, Input, Button} from './common';
+import {Card, CardSection, Input, Button, Spinner} from './common';
 
 export class LoginForm extends Component {
   onEmailChange(text) {
@@ -24,8 +25,30 @@ export class LoginForm extends Component {
       .loginFormSubmit({email, password});
   }
 
+  renderButton() {
+    if (this.props.loading) {
+      return (<Spinner/>);
+    }
+    return (
+      <Button onPress={this
+        .onSubmit
+        .bind(this)}>
+        Login
+      </Button>
+    );
+  }
+
+  renderError() {
+    if (!this.props.error) {
+      return null;
+    }
+    return (
+      <CardSection>
+        <Text>{this.props.error}</Text>
+      </CardSection>
+    );
+  }
   render() {
-    console.log(this.props);
     return (
       <Card>
         <CardSection>
@@ -46,16 +69,17 @@ export class LoginForm extends Component {
             .onPasswordChange
             .bind(this)}/>
         </CardSection>
-        <CardSection>
-          <Button onPress={this
-            .onSubmit
-            .bind(this)}>
-            Login
-          </Button>
-        </CardSection>
+        <CardSection>{this.renderButton()}</CardSection>
+        {this.renderError()}
       </Card>
     );
   }
 }
-
-export default connect(({ auth: {email, password}}) => ({email, password}), {emailChanged, passwordChanged, loginFormSubmit})(LoginForm);
+export default connect(({
+  auth: {
+    email,
+    password,
+    loading,
+    error
+  }
+}) => ({email, password, loading, error}), {emailChanged, passwordChanged, loginFormSubmit})(LoginForm);
