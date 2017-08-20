@@ -63,6 +63,7 @@ export class LoginForm extends Component {
         <CardSection>
           <Input
             value={this.props.password}
+            secureTextEntry={true}
             label="Password"
             placeholder="password"
             onChangeText={this

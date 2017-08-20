@@ -7,9 +7,11 @@ export const passwordChanged = (text) => ({type: types.PASSWORD_CHANGED, payload
 
 export const loginFormSubmit = ({email, password}) => (dispatch) => {
   dispatch({type: types.LOGIN_USER_START});
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
+  let firebaseAuth = firebase.auth();
+  Promise
+    .resolve()
+    .then(() => firebaseAuth.signInWithEmailAndPassword(email, password))
+    .catch(() => firebaseAuth.createUserWithEmailAndPassword(email, password))
     .then((user) => dispatch({type: types.LOGIN_USER_SUCCESS, payload: user}))
-    .catch(({code, message}) => dispatch({type: types.LOGIN_USER_FAIL, payload: message}));
+    .catch(({message}) => dispatch({type: types.LOGIN_USER_FAIL, payload: message}));
 };
