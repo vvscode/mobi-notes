@@ -15,6 +15,6 @@ export const loginFormSubmit = ({email, password}) => (dispatch) => {
     .then(() => firebaseAuth.signInWithEmailAndPassword(email, password))
     .catch(() => firebaseAuth.createUserWithEmailAndPassword(email, password))
     .then((user) => dispatch({type: types.LOGIN_USER_SUCCESS, payload: user}))
-    .then(() => Actions.employeeList())
+    .then(() => Actions.main())
     .catch(({message}) => dispatch({type: types.LOGIN_USER_FAIL, payload: message}));
 };
