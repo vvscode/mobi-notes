@@ -41,15 +41,15 @@ class Home extends Component {
     alert('Flip');
   }
 
-  handleOptionsPress() {
-    alert('Options!');
+  handleOptionsPress = () => {
+    this.props.navigation.navigate('Options');
   }
 
   render() {
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
-        <Header onPress={this.handleOptionsPressgit} />
+        <Header onPress={this.handleOptionsPress} />
         <KeyboardAvoidingView behavior="padding">
           <Logo />
           <InputWithButton
