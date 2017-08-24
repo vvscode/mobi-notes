@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StatusBar, Platform } from 'react-native';
+import { View, StatusBar, Platform, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import PropTypes from 'prop-types';
 
@@ -19,7 +19,7 @@ class Options extends Component {
   }
 
   handleSitePress = () => {
-    alert('press stite');
+    Linking.openURL('http://fixer.io').catch(() => alert('Something went wrong'));
   }
 
   render() {
