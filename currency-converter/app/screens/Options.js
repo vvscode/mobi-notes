@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StatusBar, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import PropTypes from 'prop-types';
 
 import { ListItem, Separator } from '../components/List';
 
@@ -9,8 +10,12 @@ const ICON_SIZE = 24;
 const ICON_PREFIX = Platform.OS === 'ios' ? 'ios' : 'md';
 
 class Options extends Component {
+  static propTypes = {
+    navigation: PropTypes.object,
+  }
+
   handleThemesPress = () => {
-    alert('press themes');
+    this.props.navigation.navigate('Themes');
   }
 
   handleSitePress = () => {
