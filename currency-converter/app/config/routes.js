@@ -29,15 +29,21 @@ const HomeStack = StackNavigator({
   headerMode: 'screen', // android-like header
 });
 
-export default StackNavigator({
-  Home: {
-    screen: HomeStack,
-  },
+const CurrencyListStack = StackNavigator({
   CurrencyList: {
     screen: CurrencyList,
     navigationOptions: ({ navigation }) => ({
       headerTitle: navigation.state.params.title,
     }),
+  },
+});
+
+export default StackNavigator({
+  Home: {
+    screen: HomeStack,
+  },
+  CurrencyList: {
+    screen: CurrencyListStack,
   },
 }, {
   mode: 'modal', // render from bottom to top
