@@ -19,7 +19,9 @@ class ListItem extends Component {
   }
 
   onPress() {
-    Actions.employeeEditForm()
+    Actions.employeeEditForm({
+      employee: this.props.employee
+    });
   }
 }
 
