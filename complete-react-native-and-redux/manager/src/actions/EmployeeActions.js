@@ -23,7 +23,7 @@ export const employeeCreate = ({name, phone, shift}) => (dispatch) => {
     .database()
     .ref(`/users/${uid}/employees`)
     .push({name, phone, shift})
-    .then((employee) => dispatch({type: types.EMPLOYEE_CREATE_SUCCESS, pyaload: employee}))
+    .then((employee) => dispatch({type: types.EMPLOYEE_SAVE_SUCCESS, pyaload: employee}))
     .then(() => Actions.employeeList())
     .catch((err) => dispatch({type: types.EMPLOYEE_CREATE_FAIL, payload: err}));
 };

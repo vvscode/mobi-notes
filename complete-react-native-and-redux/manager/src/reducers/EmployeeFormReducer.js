@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
     }
   }
 
-  if(action.type === types.EMPLOYEE_CREATE_SUCCESS) {
+  if(action.type === types.EMPLOYEE_SAVE_SUCCESS) {
     return {
       ...state,
       loading: false
@@ -33,22 +33,6 @@ export default (state = INITIAL_STATE, action) => {
   if(action.type === types.EMPLOYEE_CREATE_FAIL) {
     return {
       ...state,
-      loading: false
-    }
-  }
-
-  if(action.type === types.EMPLOYEE_FIELD_UPDATE_SUCCESS) {
-    return {
-      ...state,
-      ...INITIAL_STATE,
-      loading: false
-    }
-  }
-
-  if(action.type === types.EMPLOYEE_FIELD_DELETE_SUCCESS) {
-    return {
-      ...state,
-      ...INITIAL_STATE,
       loading: false
     }
   }
