@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StatusBar, KeyboardAvoidingView } from 'react-native';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { Container } from '../components/Containter';
 import { Logo } from '../components/Logo';
@@ -18,8 +19,9 @@ const TEMP_QUOTE_PRICE = 79.74;
 const TEMP_CONVERTIONS_RATE = 0.7974;
 const TEMP_CONVERTION_DATE = new Date();
 
-class Home extends Component {
+export class Home extends Component {
   static propTypes = {
+    dispatch: PropTypes.func,
     navigation: PropTypes.object,
   }
 
@@ -39,8 +41,12 @@ class Home extends Component {
     });
   }
 
-  handleFlipCurrencies() {
-    console.log(swapCurrency());
+  handleAmountChange = (amount) => {
+    this.props.dispatch(changeCurrencyAmount(amount));
+  }
+
+  handleFlipCurrencies = () => {
+    this.props.dispatch(swapCurrency());
   }
 
   handleOptionsPress = () => {
@@ -55,7 +61,7 @@ class Home extends Component {
         <KeyboardAvoidingView behavior="padding">
           <Logo />
           <InputWithButton
-            onChangeText={basePriceAmount => changeCurrencyAmount(basePriceAmount)}
+            onChangeText={this.handleAmountChange}
             buttonText={TEMP_BASE_CURRENCY}
             onPress={this.handlePressBaseCurrency}
             defaultValue={this.state.basePriceAmount}
@@ -79,4 +85,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect()(Home);
