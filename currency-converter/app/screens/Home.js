@@ -10,7 +10,7 @@ import { ClearButton } from '../components/Buttons';
 import { LastConverted } from '../components/Text';
 import { Header } from '../components/Header';
 
-import { changeCurrencyAmount, swapCurrency } from '../actions/currencies';
+import { changeCurrencyAmount, swapCurrency, getInitialConversion } from '../actions/currencies';
 
 class Home extends Component {
   static propTypes = {
@@ -24,6 +24,10 @@ class Home extends Component {
     isFetching: PropTypes.bool,
     primaryColor: PropTypes.string,
   };
+
+  componentWillMount() {
+    this.props.dispatch(getInitialConversion());
+  }
 
   handleChangeText = (text) => {
     this.props.dispatch(changeCurrencyAmount(text));
