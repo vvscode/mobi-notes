@@ -3,7 +3,7 @@
   "displayName": "currency-converter",
   "expo": {
     "name": "Currency Converter",
-    "description": "An empty new project",
+    "description": "Following handlebarlabs course",
     "slug": "CurrencyConverter",
     "privacy": "public",
     "sdkVersion": "20.0.0",
