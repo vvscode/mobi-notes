@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { StatusBar, KeyboardAvoidingView } from 'react-native';
+import { StatusBar, KeyboardAvoidingView, NetInfo } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Container } from '../components/Container';
@@ -12,6 +12,7 @@ import { Header } from '../components/Header';
 import { connectAlert } from '../components/Alert';
 
 import { changeCurrencyAmount, swapCurrency, getInitialConversion } from '../actions/currencies';
+import { changeNetworkStatus } from '../actions/network';
 
 class Home extends Component {
   static propTypes = {
@@ -30,6 +31,7 @@ class Home extends Component {
 
   componentWillMount() {
     this.props.dispatch(getInitialConversion());
+    NetInfo.addEventListener('change', this.handleNetworkChange);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,16 +40,30 @@ class Home extends Component {
     }
   }
 
+  componentWillUnmount() {
+    NetInfo.removeEventListener('change', this.handleNetworkChange);
+  }
+
+  handleNetworkChange = (info) => {
+    this.props.dispatch(changeNetworkStatus(info));
+  };
+
   handleChangeText = (text) => {
     this.props.dispatch(changeCurrencyAmount(text));
   };
 
   handlePressBaseCurrency = () => {
-    this.props.navigation.navigate('CurrencyList', { title: 'Base Currency', type: 'base' });
+    this.props.navigation.navigate('CurrencyList', {
+      title: 'Base Currency',
+      type: 'base',
+    });
   };
 
   handlePressQuoteCurrency = () => {
-    this.props.navigation.navigate('CurrencyList', { title: 'Quote Currency', type: 'quote' });
+    this.props.navigation.navigate('CurrencyList', {
+      title: 'Quote Currency',
+      type: 'quote',
+    });
   };
 
   handleSwapCurrency = () => {
