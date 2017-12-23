@@ -9,11 +9,9 @@ import {
   CONVERSION_ERROR,
 } from '../actions/currencies';
 
-const DELAY_SECONDS = 4; // approx. time warning is shown
-
 export const getLatestRate = currency => fetch(`http://api.fixer.io/latest?base=${currency}`);
 
-const fetchLatestConversionRates = function* fetchLatestConversionRates(action) {
+const fetchLatestConversionRates = function* (action) {
   const { connected, hasCheckedStatus } = yield select(state => state.network);
   if (!connected && hasCheckedStatus) {
     yield put({
@@ -40,7 +38,8 @@ const fetchLatestConversionRates = function* fetchLatestConversionRates(action) 
   }
 };
 
-const clearConversionError = function* clearConversionError() {
+const clearConversionError = function* () {
+  const DELAY_SECONDS = 4; // approx. time warning is shown
   const error = yield select(state => state.currencies.error);
   if (error) {
     // check for existance otherwise we get stuck in an infinite loop
@@ -49,11 +48,10 @@ const clearConversionError = function* clearConversionError() {
   }
 };
 
-const rootSaga = function* rootSaga() {
+const rootSaga = function* () {
   yield takeEvery(GET_INITIAL_CONVERSION, fetchLatestConversionRates);
   yield takeEvery(CHANGE_BASE_CURRENCY, fetchLatestConversionRates);
   yield takeEvery(SWAP_CURRENCY, fetchLatestConversionRates);
   yield takeEvery(CONVERSION_ERROR, clearConversionError);
 };
-
 export default rootSaga;

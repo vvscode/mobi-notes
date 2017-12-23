@@ -1,8 +1,8 @@
-import { AsyncStorage as storage } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-import { persistStore, autoRehydrate } from 'redux-persist';
 
 import reducer from '../reducers';
 import rootSaga from './sagas';
@@ -14,12 +14,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const store = createStore(reducer, compose(applyMiddleware(...middleware), autoRehydrate()));
+sagaMiddleware.run(rootSaga);
 
 persistStore(store, {
-  storage,
+  storage: AsyncStorage,
   blacklist: ['network'],
 });
-
-sagaMiddleware.run(rootSaga);
 
 export default store;

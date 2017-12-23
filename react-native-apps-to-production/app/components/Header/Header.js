@@ -4,18 +4,21 @@ import { View, Image, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 
-const Header = ({ onPress, isConnected, onWarningPress }) => (
-  <View style={styles.container}>
-    {!isConnected ? (
-      <TouchableOpacity onPress={onWarningPress} style={styles.button}>
-        <Image resizeMode="contain" source={require('./images/warning.png')} style={styles.icon} />
+const Header = ({ onPress, isConnected, onWarningPress }) =>
+  (<View style={styles.container}>
+    {!isConnected
+      ? <TouchableOpacity onPress={onWarningPress} style={styles.button}>
+        <Image
+          resizeMode="contain"
+          source={require('./images/warning.png')}
+          style={styles.icon}
+        />
       </TouchableOpacity>
-    ) : null}
+      : null}
     <TouchableOpacity onPress={onPress} style={[styles.button, styles.buttonRight]}>
       <Image resizeMode="contain" source={require('./images/gear.png')} style={styles.icon} />
     </TouchableOpacity>
-  </View>
-);
+  </View>);
 
 Header.propTypes = {
   onPress: PropTypes.func,
