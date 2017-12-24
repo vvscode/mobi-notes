@@ -7,6 +7,8 @@ const BORDER_RADIUS = 4;
 export default EStyleSheet.create({
   $buttonBackgroundColorBase: '$white',
   $buttonBackgroundColorModifier: 0.1,
+  $inputBackgroundBase: '#f0f0f0',
+  $inputBackgoundAlt: '#c5e6b7',
   container: {
     backgroundColor: '$white',
     width: '90%',
