@@ -11,11 +11,7 @@ import { LastConverted } from '../components/Text';
 import { Header } from '../components/Header';
 import { connectAlert } from '../components/Alert';
 
-import {
-  changeCurrencyAmount,
-  swapCurrency,
-  getInitialConversion,
-} from '../actions/currencies';
+import { changeCurrencyAmount, swapCurrency, getInitialConversion } from '../actions/currencies';
 import { changeNetworkStatus } from '../actions/network';
 
 class Home extends Component {
@@ -36,7 +32,7 @@ class Home extends Component {
 
   componentWillMount() {
     this.props.dispatch(getInitialConversion());
-    NetInfo.addEventListener('change', this.handleNetworkChange);
+    NetInfo.addEventListener('connectionChange', this.handleNetworkChange);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -124,10 +120,7 @@ class Home extends Component {
             quote={this.props.quoteCurrency}
             conversionRate={this.props.conversionRate}
           />
-          <ClearButton
-            onPress={this.handleSwapCurrency}
-            text="Reverse Currencies"
-          />
+          <ClearButton onPress={this.handleSwapCurrency} text="Reverse Currencies" />
         </KeyboardAvoidingView>
       </Container>
     );
@@ -145,9 +138,7 @@ const mapStateToProps = (state) => {
     quoteCurrency,
     amount: state.currencies.amount,
     conversionRate: rates[quoteCurrency] || 0,
-    lastConvertedDate: conversionSelector.date
-      ? new Date(conversionSelector.date)
-      : new Date(),
+    lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
     isFetching: conversionSelector.isFetching,
     primaryColor: state.theme.primaryColor,
     currencyError: state.currencies.error,

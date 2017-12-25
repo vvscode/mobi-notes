@@ -5,8 +5,8 @@ const initialState = {
   hasCheckedStatus: false,
 };
 
-const isConnected = (status) => {
-  if (status.toLowerCase() === 'none') {
+const isConnected = ({ effectiveType }) => {
+  if (effectiveType.toLowerCase() === 'none') {
     return false;
   }
 
