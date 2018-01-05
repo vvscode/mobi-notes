@@ -9,11 +9,7 @@ const Container = ({ children, backgroundColor }) => {
   if (backgroundColor) {
     containerStyles.push({ backgroundColor });
   }
-  return (
-    <View style={containerStyles}>
-      {children}
-    </View>
-  );
+  return <View style={containerStyles}>{children}</View>;
 };
 
 Container.propTypes = {
