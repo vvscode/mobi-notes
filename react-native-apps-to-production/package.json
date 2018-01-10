@@ -4,6 +4,8 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": "^8.0.2",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
     "eslint": "^4.12.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.7.0",
@@ -12,8 +14,10 @@
     "jest-expo": "^23.0.0",
     "prettier": "^1.5.3",
     "prettier-eslint": "^8.2.2",
+    "react-dom": "16.2.0",
     "react-native-scripts": "1.7.0",
-    "react-test-renderer": "^16.1.1"
+    "react-test-renderer": "^16.1.1",
+    "sinon": "4.1.4"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -28,7 +32,8 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "collectCoverageFrom": ["app/*.js", "app/**/*.js"]
+    "collectCoverageFrom": ["app/*.js", "app/**/*.js"],
+    "setupFiles": ["./tests/setup.js"]
   },
   "dependencies": {
     "@expo/vector-icons": "^6.2.0",
