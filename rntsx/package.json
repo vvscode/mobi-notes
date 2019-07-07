@@ -7,7 +7,7 @@
     "test": "jest",
     "lint": "eslint .",
     "ios": "react-native run-ios",
-    "android": "react-native run-androind"
+    "android": "react-native run-android"
   },
   "dependencies": {
     "react": "16.8.6",
