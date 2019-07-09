@@ -3,6 +3,16 @@ import { StyleSheet, View, TextInput, Text, Button, Alert } from 'react-native';
 
 const App = () => {
   const [text, setText] = useState('');
+  const [titles, setTitles] = useState([] as string[]);
+  const onSubmit = () => {
+    if (!text) {
+      return Alert.alert('First enter text');
+    }
+    Alert.alert('You entered', text);
+    setTitles([...titles, text]);
+    setText('');
+  }
+
   return <View style={styles.container}>
     <View style={styles.inputContainer}>
 
@@ -13,12 +23,11 @@ const App = () => {
         placeholder="An awesome input..."
         placeholderTextColor="red" />
       <Button
-        style={styles.button}
         title="Click me"
-        onPress={() => Alert.alert(text)}
+        onPress={onSubmit}
       />
     </View>
-    <Text>{text}</Text>
+    <Text>{titles.join('\n')}</Text>
   </View>
 }
 
@@ -39,9 +48,6 @@ const styles = StyleSheet.create({
     width: '70%',
     borderWidth: 1,
     borderColor: 'black',
-  },
-  button: {
-    width: '25%',
   }
 });
 
