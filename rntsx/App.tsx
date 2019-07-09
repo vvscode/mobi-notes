@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Text, Button, Alert } from 'react-native';
 
+import ListItem from './components/ListItem/index';
+
 const App = () => {
   const [text, setText] = useState('');
   const [titles, setTitles] = useState([] as string[]);
@@ -27,7 +29,7 @@ const App = () => {
         onPress={onSubmit}
       />
     </View>
-    <Text>{titles.join('\n')}</Text>
+    {titles.map((text, index) => <ListItem key={index} placeName={text} />)}
   </View>
 }
 
